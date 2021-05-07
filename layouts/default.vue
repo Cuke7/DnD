@@ -33,6 +33,7 @@
         rounded
         v-for="page in pages"
         :key="pages.indexOf(page)"
+        class="pa-2 my-2"
       >
         <v-row align-content="center" align="center">
           <v-col cols="auto">
@@ -105,7 +106,6 @@ export default {
   background-image: url("/DnD/background.jpg");
   background-repeat: repeat;
 }
-
 #navigation_drawer {
   background-image: url("/DnD/tiles.jpg");
   background-repeat: repeat;
