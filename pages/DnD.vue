@@ -132,7 +132,7 @@ export default {
   computed: {
     // Applay filters
     filtered_results() {
-      console.log("In filter results");
+      //console.log("In filter results");
       let checker = (arr, target) => target.every(v => arr.includes(v));
       return this.$store.state.data_magical_items.filter(item =>
         checker(item.code, this.filters)
@@ -140,7 +140,7 @@ export default {
     },
     // Aplly fuzzy search
     sorted_results() {
-      console.log("In sorted results");
+      //console.log("In sorted results");
       if (this.search) {
         return fuzzysort
           .go(this.search, this.filtered_results, {
