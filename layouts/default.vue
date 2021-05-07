@@ -107,13 +107,8 @@ export default {
   background-repeat: repeat;
 }
 
-#caracs {
-  border: 0.2rem solid;
-  border-radius: 10px;
-}
-
 #navigation_drawer {
-  background-image: url("/DnD/tiles.jpg");
-  background-repeat: repeat;
+  /*background-image: url("/DnD/tiles.jpg");
+  background-repeat: repeat;*/
 }
 </style>
