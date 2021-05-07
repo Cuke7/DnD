@@ -127,22 +127,29 @@ export default {
     show: false,
     rarete: null,
     type: "",
-    fab: false
+    fab: false,
+    LevImplementation: true
   }),
   computed: {
-    sorted_results() {
+    // Applay filters
+    filtered_results() {
+      console.log("In filter results");
       let checker = (arr, target) => target.every(v => arr.includes(v));
-      let out = this.$store.state.data_magical_items.filter(item =>
+      return this.$store.state.data_magical_items.filter(item =>
         checker(item.code, this.filters)
       );
+    },
+    // Aplly fuzzy search
+    sorted_results() {
+      console.log("In sorted results");
       if (this.search) {
         return fuzzysort
-          .go(this.search, out, {
+          .go(this.search, this.filtered_results, {
             key: "nom"
           })
           .map(a => a.obj);
       } else {
-        return out;
+        return this.filtered_results;
       }
     },
     filters() {
