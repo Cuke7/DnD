@@ -23,23 +23,23 @@
       app
       class="pa-4"
       color="grey lighten-3"
+      id="navigation_drawer"
     >
       <v-card
         elevation="0"
         v-bind:to="page.page_url"
         nuxt
-        color="grey lighten-2"
+        color="rgb(255, 255, 255, 0.8)"
         rounded
         v-for="page in pages"
         :key="pages.indexOf(page)"
+        class="pa-2 my-2"
       >
-        <v-row class="ma-3" align-content="center" align="center">
-          <v-col>
-            <v-avatar size="50">
-              <img v-bind:src="page.icon_url" alt="Bird_icon"
-            /></v-avatar>
+        <v-row align-content="center" align="center">
+          <v-col cols="auto">
+            <v-avatar> <img v-bind:src="page.icon_url"/></v-avatar>
           </v-col>
-          <v-col>
+          <v-col cols="auto">
             {{ page.name }}
           </v-col>
         </v-row>
@@ -76,7 +76,7 @@ export default {
       {
         page_url: "/",
         name: "Menu principal",
-        icon_url: "/icons/dnd_icon.jpg"
+        icon_url: "/icon.png"
       },
       {
         page_url: "/DnD",
@@ -110,5 +110,10 @@ export default {
 #caracs {
   border: 0.2rem solid;
   border-radius: 10px;
+}
+
+#navigation_drawer {
+  background-image: url("/DnD/tiles.jpg");
+  background-repeat: repeat;
 }
 </style>

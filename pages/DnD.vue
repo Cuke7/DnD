@@ -1,5 +1,5 @@
 <template>
-  <v-container id="banner" fluid>
+  <v-container id="banner" fluid ref="container">
     <v-card class="mx-1 my-3 pa-5" color="rgb(255, 255, 255, 0.1)">
       <v-row align="center" justify="space-around">
         <v-col cols="10">
@@ -91,12 +91,19 @@
       {{ sorted_results.length }} objets trouvés :
     </v-card-subtitle>
 
-    <ObjetMagique
+    <ObjetMagique2
       :objet="result"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
-      class="mx-1 pa-2"
-    ></ObjetMagique>
+      class="pa-2"
+    ></ObjetMagique2>
+
+    <!--<ObjetMagique
+        :objet="result"
+        v-for="(result, index) in sorted_results"
+        v-bind:key="index"
+        class="mx-1 pa-2"
+      ></ObjetMagique>-->
 
     <v-btn
       fab
@@ -107,6 +114,7 @@
       @click="toTop"
       v-show="fab"
       color="primary"
+      class="fab"
     >
       <v-icon>mdi-chevron-up</v-icon>
     </v-btn>
@@ -160,6 +168,12 @@ export default {
   watch: {
     search: function(search) {
       this.$store.state.search_query = search;
+    },
+    rarete: function(rarete) {
+      this.$store.state.rarete = rarete;
+    },
+    type: function(type) {
+      this.$store.state.type = type;
     }
   },
   methods: {
@@ -177,6 +191,8 @@ export default {
       // Code that will run only after the
       // entire view has been rendered
       this.search = this.$store.state.search_query;
+      this.rarete = this.$store.state.rarete;
+      this.type = this.$store.state.type;
     });
   }
 };
@@ -185,5 +201,8 @@ export default {
 <style>
 .subtitle {
   color: #6d0000 !important;
+}
+.fab {
+  bottom: 60px !important;
 }
 </style>

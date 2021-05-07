@@ -3,7 +3,8 @@ const fuzzysort = require("fuzzysort");
 
 export const state = () => ({
   counter: 0,
-  data_magical_items: data
+  data_magical_items: data,
+  filters: []
 });
 
 export const getters = {
