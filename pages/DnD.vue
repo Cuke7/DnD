@@ -116,7 +116,7 @@
 
 <script>
 import ObjetMagique from "~/components/ObjetMagique.vue";
-//const fuzzysort = require("fuzzysort");
+const fuzzysort = require("fuzzysort");
 
 export default {
   components: {
@@ -130,31 +130,31 @@ export default {
     fab: false
   }),
   computed: {
+    sorted_results() {
+      let checker = (arr, target) => target.every(v => arr.includes(v));
+      let out = this.$store.state.data_magical_items.filter(item =>
+        checker(item.code, this.filters)
+      );
+      if (this.search) {
+        return fuzzysort
+          .go(this.search, out, {
+            key: "nom"
+          })
+          .map(a => a.obj);
+      } else {
+        return out;
+      }
+    },
     filters() {
       return [this.rarete, this.type].filter(function(el) {
         return el;
       });
-    },
-    sorted_results() {
-      console.log(this.filters);
-      return this.$store.getters.get_filtered_list(this.filters, this.search);
     }
   },
   watch: {
-    // filters: function(filters) {
-    //   this.$store.commit("filter_by_filters", this.filters);
-    // },
-    // search: function(search) {
-    //   //console.log(this.data_magical_items);
-    //   this.sorted_results = fuzzysort.go(
-    //     search,
-    //     this.$store.state.filtered_items,
-    //     {
-    //       key: "nom"
-    //     }
-    //   );
-    //   this.$store.state.search_query = search;
-    // }
+    search: function(search) {
+      this.$store.state.search_query = search;
+    }
   },
   methods: {
     onScroll(e) {

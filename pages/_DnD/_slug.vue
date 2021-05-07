@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="bloc">
+    <div class="bloc pa-2">
       <h1 class="my-6">{{ selected_item.nom }}</h1>
       <div class="mb-6" style="font-weight: bold;">
         {{ selected_item.type }}, rareté {{ selected_item.rarete }}.
