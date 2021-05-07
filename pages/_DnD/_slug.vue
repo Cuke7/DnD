@@ -3,7 +3,7 @@
     <div class="bloc pa-2">
       <h1 class="my-6">{{ selected_item.nom }}</h1>
       <div class="mb-6" style="font-weight: bold;">
-        {{ selected_item.type }}, rareté {{ selected_item.rarete }}.
+        {{ selected_item.type }}, {{ selected_item.rarete }}.
       </div>
       <div v-if="selected_item.lien" class="mb-6" style="font-weight: bold;">
         Nécessite un lien.
@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
 export default {
   layout: "subpage",
   data: () => ({
@@ -31,7 +30,7 @@ export default {
   async asyncData({ params }) {
     const slug = params.slug; // When calling /abc the slug will be "abc"
     return { slug };
-  },
+  }
 };
 </script>
 

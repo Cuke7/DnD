@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-center">Menu principal</h1>
+  <h1 class="text-center">La croisée des chemins</h1>
 </template>
 
 <script>

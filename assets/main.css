@@ -8,3 +8,7 @@
   opacity: 0;
   transform: translate3d(10px, 0, 0);
 }
+
+h1 {
+  color: #6d0000;
+}

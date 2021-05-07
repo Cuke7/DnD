@@ -1,6 +1,7 @@
 <template>
-  <v-container id="banner" fluid ref="container">
-    <v-card class="mx-1 my-3 pa-5" color="rgb(255, 255, 255, 0.1)">
+  <v-container id="banner" ref="container">
+    <h1 class="text-center">Le marché aux objets magiques</h1>
+    <v-card class="pa-5 my-4" color="rgb(255, 255, 255, 0.2)">
       <v-row align="center" justify="space-around">
         <v-col cols="10">
           <v-text-field
@@ -86,24 +87,17 @@
           </v-chip-group>
         </div>
       </v-expand-transition>
+      <v-card-subtitle>
+        {{ sorted_results.length }} objets trouvés.
+      </v-card-subtitle>
     </v-card>
-    <v-card-subtitle>
-      {{ sorted_results.length }} objets trouvés :
-    </v-card-subtitle>
 
-    <ObjetMagique2
+    <ObjetMagique
       :objet="result"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
       class="pa-2"
-    ></ObjetMagique2>
-
-    <!--<ObjetMagique
-      :objet="result"
-      v-for="(result, index) in sorted_results"
-      v-bind:key="index"
-      class="mx-1 pa-2"
-    ></ObjetMagique>-->
+    ></ObjetMagique>
 
     <v-btn
       fab
@@ -123,13 +117,11 @@
 
 <script>
 import ObjetMagique from "~/components/ObjetMagique.vue";
-import ObjetMagique2 from "~/components/ObjetMagique2.vue";
 const fuzzysort = require("fuzzysort");
 
 export default {
   components: {
-    ObjetMagique,
-    ObjetMagique2
+    ObjetMagique
   },
   data: () => ({
     search: "",
@@ -182,7 +174,7 @@ export default {
     onScroll(e) {
       if (typeof window === "undefined") return;
       const top = window.pageYOffset || e.target.scrollTop || 0;
-      this.fab = top > 50;
+      this.fab = top > 150;
     },
     toTop() {
       this.$vuetify.goTo(0);

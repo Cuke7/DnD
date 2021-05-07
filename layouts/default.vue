@@ -6,7 +6,7 @@
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
 
-      <v-toolbar-title class="white--text">D&D assistant</v-toolbar-title>
+      <v-toolbar-title class="white--text">D&D app</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <!--
@@ -29,39 +29,29 @@
         elevation="0"
         v-bind:to="page.page_url"
         nuxt
-        color="rgb(255, 255, 255, 0.8)"
-        rounded
+        color="rgb(255, 255, 255, 0.6)"
         v-for="page in pages"
         :key="pages.indexOf(page)"
-        class="pa-2 my-2"
+        class="pa-1 my-4 rounded-pill"
       >
         <v-row align-content="center" align="center">
           <v-col cols="auto">
             <v-avatar> <img v-bind:src="page.icon_url"/></v-avatar>
           </v-col>
-          <v-col cols="auto">
+          <v-col cols="auto" class="font-weight-bold">
             {{ page.name }}
           </v-col>
         </v-row>
       </v-card>
     </v-navigation-drawer>
 
-    <v-navigation-drawer app clipped right v-model="drawer2">
-      <v-list>
-        <v-list-item
-          v-for="setting in settings"
-          :key="settings.indexOf(setting)"
-        >
-          <v-list-item-content>
-            <v-list-item-title>{{ setting.name }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
     <v-main>
       <!--  -->
-      <nuxt />
+      <v-row justify="center" class="pa-0 ma-0">
+        <v-col cols="12" lg="8">
+          <nuxt />
+        </v-col>
+      </v-row>
     </v-main>
   </v-app>
 </template>
@@ -70,7 +60,6 @@
 export default {
   data: () => ({
     drawer: false,
-    drawer2: false,
     dark_mode_activated: true,
     pages: [
       {
@@ -82,14 +71,6 @@ export default {
         page_url: "/DnD",
         name: "Objets magiques",
         icon_url: "/icons/chest_icon.jpg"
-      }
-    ],
-    settings: [
-      {
-        name: "Setting 1"
-      },
-      {
-        name: "Setting 2"
       }
     ]
   }),
