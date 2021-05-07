@@ -101,7 +101,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .v-main {
   background-image: url("/DnD/background.jpg");
   background-repeat: repeat;
