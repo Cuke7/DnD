@@ -36,7 +36,8 @@ export default {
   pwa: {
     manifest: {
       name: "D&D app",
-      lang: "fr"
+      lang: "fr",
+      theme_color: "#6d0000"
     }
   },
 
