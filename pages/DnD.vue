@@ -91,19 +91,19 @@
       {{ sorted_results.length }} objets trouvés :
     </v-card-subtitle>
 
-    <ObjetMagique2
+    <!--<ObjetMagique2
       :objet="result"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
       class="pa-2"
-    ></ObjetMagique2>
+    ></ObjetMagique2>-->
 
-    <!--<ObjetMagique
+    <ObjetMagique
       :objet="result"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
       class="mx-1 pa-2"
-    ></ObjetMagique>-->
+    ></ObjetMagique>
 
     <v-btn
       fab
