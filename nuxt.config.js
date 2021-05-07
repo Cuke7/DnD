@@ -37,7 +37,8 @@ export default {
     manifest: {
       name: "D&D app",
       lang: "fr",
-      theme_color: "#6d0000"
+      theme_color: "#6d0000",
+      short_name : "D&D app",
     }
   },
 
