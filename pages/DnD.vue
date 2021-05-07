@@ -203,6 +203,6 @@ export default {
   color: #6d0000 !important;
 }
 .fab {
-  bottom: 60px !important;
+  bottom: 75px !important;
 }
 </style>
