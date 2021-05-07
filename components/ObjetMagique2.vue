@@ -1,6 +1,5 @@
 <template>
   <v-lazy>
-    <div>
       <v-list-item>
         <v-list-item-avatar>
           <v-avatar v-if="objet.image_url != 'no_url'">
@@ -24,7 +23,6 @@
         </v-list-item-action>
       </v-list-item>
       <v-divider class="mt-2"></v-divider>
-    </div>
   </v-lazy>
 </template>
 

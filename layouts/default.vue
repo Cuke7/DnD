@@ -107,7 +107,7 @@ export default {
 }
 
 #navigation_drawer {
-  /*background-image: url("/DnD/tiles.jpg");
-  background-repeat: repeat;*/
+  background-image: url("/DnD/tiles.jpg");
+  background-repeat: repeat;
 }
 </style>
