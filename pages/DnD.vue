@@ -90,6 +90,7 @@
     <v-card-subtitle>
       {{ sorted_results.length }} objets trouvés :
     </v-card-subtitle>
+
     <v-card
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
