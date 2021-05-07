@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: "ObjetMagique",
+  name: "ObjetMagique2",
   props: ["objet"]
 };
 </script>
