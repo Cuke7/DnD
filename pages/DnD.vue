@@ -123,11 +123,13 @@
 
 <script>
 import ObjetMagique from "~/components/ObjetMagique.vue";
+import ObjetMagique2 from "~/components/ObjetMagique2.vue";
 const fuzzysort = require("fuzzysort");
 
 export default {
   components: {
-    ObjetMagique
+    ObjetMagique,
+    ObjetMagique2
   },
   data: () => ({
     search: "",
