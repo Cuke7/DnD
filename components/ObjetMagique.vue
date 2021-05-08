@@ -48,7 +48,7 @@
           </v-row>
         </v-col>
         <v-col cols="auto">
-          <v-btn nuxt v-bind:to="'/DnD/' + objet.nom" icon>
+          <v-btn nuxt v-bind:to="objet.nom" icon>
             <v-icon>
               mdi-chevron-right
             </v-icon>

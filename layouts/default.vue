@@ -68,10 +68,10 @@ export default {
         icon_url: "/icon.png"
       },
       {
-        page_url: "/DnD",
+        page_url: "/objetMagiques",
         name: "Objets magiques",
         icon_url: "/icons/chest_icon.jpg"
-      }
+      },
     ]
   }),
   watch: {

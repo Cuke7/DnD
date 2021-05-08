@@ -1,7 +1,7 @@
 <template>
   <v-app v-cloak>
     <v-app-bar app color="primary">
-      <v-btn icon nuxt to="/DnD">
+      <v-btn icon nuxt to="/objetMagiques">
         <v-icon color="white">
           mdi-arrow-left
         </v-icon>
@@ -11,8 +11,12 @@
     </v-app-bar>
 
     <v-main>
+      <v-row justify="center" class="pa-0 ma-0">
+        <v-col cols="12" lg="8">
+          <nuxt />
+        </v-col>
+      </v-row>
       <!--  -->
-      <nuxt />
     </v-main>
   </v-app>
 </template>
@@ -26,7 +30,7 @@ export default {
     dark_mode_activated(val) {
       this.$vuetify.theme.dark = !val;
     }
-  },
+  }
 };
 </script>
 

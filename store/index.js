@@ -1,9 +1,9 @@
-import data from "~/static/magical_objects_V2.json";
+import data_magical_items from "~/static/data/magical_objects.json";
 const fuzzysort = require("fuzzysort");
 
 export const state = () => ({
   counter: 0,
-  data_magical_items: data,
+  data_magical_items: data_magical_items,
   filters: []
 });
 
