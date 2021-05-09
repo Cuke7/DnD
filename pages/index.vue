@@ -35,7 +35,7 @@ export default {
       // {
       //   nom: "Clerc",
       //   link: "https://www.aidedd.org/regles/classes/clerc/"
-      // },
+      // }
       {
         nom: "Druide",
         link: "https://www.aidedd.org/regles/classes/druide/"
