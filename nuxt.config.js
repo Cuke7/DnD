@@ -41,8 +41,8 @@ export default {
       short_name: "D&D app"
     },
     icon: {
-      source: "/app-icon2.png",
-      fileName: "app-icon2.png"
+      source: "/icon.png",
+      fileName: "icon.png"
     }
   },
 
