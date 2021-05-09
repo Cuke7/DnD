@@ -65,7 +65,7 @@ export default {
       {
         page_url: "/",
         name: "Menu principal",
-        icon_url: "/icon.png"
+        icon_url: "/icon2.png"
       },
       {
         page_url: "/objetMagiques",
