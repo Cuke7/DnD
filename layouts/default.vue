@@ -21,10 +21,14 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      class="pa-4"
+      class="pa-0"
       color="grey lighten-3"
       id="navigation_drawer"
     >
+      <nuxt-link v-bind:to="'/'">
+        <v-img src="/icon2.png" contain></v-img>
+      </nuxt-link>
+
       <v-card
         elevation="0"
         v-bind:to="page.page_url"
@@ -32,7 +36,7 @@
         color="rgb(255, 255, 255, 0.6)"
         v-for="page in pages"
         :key="pages.indexOf(page)"
-        class="pa-1 my-4 rounded-pill"
+        class="pa-1 ma-4 rounded-pill"
       >
         <v-row align-content="center" align="center">
           <v-col cols="auto">
@@ -63,15 +67,10 @@ export default {
     dark_mode_activated: true,
     pages: [
       {
-        page_url: "/",
-        name: "Menu principal",
-        icon_url: "/icon2.png"
-      },
-      {
         page_url: "/objetMagiques",
         name: "Objets magiques",
         icon_url: "/icons/chest_icon.jpg"
-      },
+      }
     ]
   }),
   watch: {
