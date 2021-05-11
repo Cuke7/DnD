@@ -1,11 +1,11 @@
 <template>
   <v-container id="banner" ref="container">
-    <h1 class="text-center">Le marché aux objets magiques</h1>
+    <h1 class="text-center">Le grimoire du magicien</h1>
     <v-card class="pa-5 my-4" color="rgb(255, 255, 255, 0.2)">
       <v-row align="center" justify="space-around">
         <v-col cols="10">
           <v-text-field
-            label="Chercher un objet magique"
+            label="Chercher un sort"
             v-model="search"
             color="primary"
             autocomplete="off"
@@ -28,76 +28,80 @@
           <v-divider></v-divider>
 
           <v-card-subtitle class="subtitle">
-            Rareté
+            Classe
           </v-card-subtitle>
 
-          <v-chip-group v-model="rarete" column>
-            <v-chip filter outlined value="A">
-              Commun
+          <v-chip-group v-model="classe" column>
+            <v-chip filter outlined value="Barde">Barde</v-chip>
+            <v-chip filter outlined value="Clerc">Clerc</v-chip>
+            <v-chip filter outlined value="Druide">Druide</v-chip>
+            <v-chip filter outlined value="Ensorceleur">Ensorceleur</v-chip>
+            <v-chip filter outlined value="Magicien">Magicien</v-chip>
+            <v-chip filter outlined value="Paladin">Paladin</v-chip>
+            <v-chip filter outlined value="Rôdeur">Rôdeur</v-chip>
+            <v-chip filter outlined value="Sorcier">Sorcier</v-chip>
+            <v-chip filter outlined value="Artificier">Artificier</v-chip>
+          </v-chip-group>
+
+          <v-card-subtitle class="subtitle">
+            École de magie
+          </v-card-subtitle>
+
+          <v-chip-group v-model="ecole" column>
+            <v-chip filter outlined value="abjuration">
+              Abjuration
             </v-chip>
-            <v-chip filter outlined value="B">
-              Peu commun
+            <v-chip filter outlined value="divination">
+              Divination
             </v-chip>
-            <v-chip filter outlined value="C">
-              Rare
+            <v-chip filter outlined value="enchantement">
+              Enchantement
             </v-chip>
-            <v-chip filter outlined value="D">
-              Très rare
+            <v-chip filter outlined value="évocation">
+              Évocation
             </v-chip>
-            <v-chip filter outlined value="E">
-              Légenfaire
+            <v-chip filter outlined value="illusion">
+              Illusion
             </v-chip>
-            <v-chip filter outlined value="F">
-              Artéfact
+            <v-chip filter outlined value="invocation">
+              Invocation
+            </v-chip>
+            <v-chip filter outlined value="nécromancie">
+              Nécromancie
+            </v-chip>
+            <v-chip filter outlined value="transmutation">
+              Transmutation
             </v-chip>
           </v-chip-group>
 
           <v-card-subtitle class="subtitle">
-            Emplacement
+            Niveau du sort
           </v-card-subtitle>
 
-          <v-chip-group v-model="type" column>
-            <v-chip filter outlined value="G">
-              Anneau
-            </v-chip>
-            <v-chip filter outlined value="H">
-              Arme
-            </v-chip>
-            <v-chip filter outlined value="I">
-              Armure
-            </v-chip>
-            <v-chip filter outlined value="J">
-              Baguette
-            </v-chip>
-            <v-chip filter outlined value="K">
-              Bâton
-            </v-chip>
-            <v-chip filter outlined value="L">
-              Objet merveilleux
-            </v-chip>
-            <v-chip filter outlined value="M">
-              Parchemin
-            </v-chip>
-            <v-chip filter outlined value="N">
-              Potion
-            </v-chip>
-            <v-chip filter outlined value="O">
-              Sceptre
+          <v-chip-group v-model="level" column>
+            <v-chip
+              v-for="n in 10"
+              v-bind:key="n"
+              filter
+              outlined
+              v-bind:value="n - 1 + ''"
+            >
+              {{ n - 1 }}
             </v-chip>
           </v-chip-group>
         </div>
       </v-expand-transition>
       <v-card-subtitle>
-        {{ sorted_results.length }} objets trouvés.
+        {{ sorted_results.length }} sorts trouvé(s).
       </v-card-subtitle>
     </v-card>
 
-    <ObjetMagique
+    <Spell
       :objet="result"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
       class="pa-2"
-    ></ObjetMagique>
+    ></Spell>
 
     <v-btn
       fab
@@ -116,28 +120,28 @@
 </template>
 
 <script>
-import ObjetMagique from "~/components/ObjetMagique.vue";
+import Spell from "~/components/Spell.vue";
 const fuzzysort = require("fuzzysort");
 
 export default {
   components: {
-    ObjetMagique
+    Spell
   },
   data: () => ({
     search: "",
     show: false,
-    rarete: null,
-    type: "",
-    fab: false,
-    LevImplementation: true
+    level: null,
+    ecole: null,
+    classe: null,
+    fab: false
   }),
   computed: {
-    // Applay filters
+    // Apply filters
     filtered_results() {
       //console.log("In filter results");
       let checker = (arr, target) => target.every(v => arr.includes(v));
-      return this.$store.state.data_magical_items.filter(item =>
-        checker(item.code, this.filters)
+      return this.$store.state.data_spells.filter(spell =>
+        checker(spell.code, this.filters)
       );
     },
     // Aplly fuzzy search
@@ -154,7 +158,7 @@ export default {
       }
     },
     filters() {
-      return [this.rarete, this.type].filter(function(el) {
+      return [this.classe, this.ecole, this.level].filter(function(el) {
         return el;
       });
     }

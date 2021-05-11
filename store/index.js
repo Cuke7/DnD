@@ -1,14 +1,17 @@
 import data_magical_items from "~/static/data/magical_objects.json";
-const fuzzysort = require("fuzzysort");
+import data_spells from "~/static/data/spells.json";
 
 export const state = () => ({
   counter: 0,
   data_magical_items: data_magical_items,
-  filters: []
+  data_spells: data_spells
 });
 
 export const getters = {
   get_selected_item: state => nom => {
     return state.data_magical_items.find(item => item.nom === nom);
+  },
+  get_selected_spell: state => nom => {
+    return state.data_spells.find(spell => spell.nom === nom);
   }
 };

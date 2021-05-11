@@ -70,6 +70,11 @@ export default {
         page_url: "/objetMagiques",
         name: "Objets magiques",
         icon_url: "/icons/chest_icon.jpg"
+      },
+      {
+        page_url: "/sorts",
+        name: "Sortilèges",
+        icon_url: "/icons/spells_icon.jfif"
       }
     ]
   }),

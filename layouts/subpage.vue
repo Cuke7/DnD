@@ -1,7 +1,7 @@
 <template>
   <v-app v-cloak>
     <v-app-bar app color="primary">
-      <v-btn icon nuxt to="/objetMagiques">
+      <v-btn icon nuxt @click="$router.go(-1)">
         <v-icon color="white">
           mdi-arrow-left
         </v-icon>

@@ -2,11 +2,21 @@
   <v-container>
     <div class="bloc pa-2">
       <h1 class="my-6">{{ selected_item.nom }}</h1>
-      <div class="mb-6" style="font-weight: bold;">
-        {{ selected_item.type }}, {{ selected_item.rarete }}.
+      <div class="ma-3" style="font-weight: bold;">
+        École : {{ selected_item.ecole }}, sort de niveau {{ selected_item.level }}.
       </div>
-      <div v-if="selected_item.lien" class="mb-6" style="font-weight: bold;">
-        Nécessite un lien.
+      <div class="ma-3" style="font-weight: bold;">
+        {{ selected_item.incantation }}
+      </div>
+      <div v-if="selected_item.rituel" class="mb-6" style="font-weight: bold;">
+        Nécessite un rituel.
+      </div>
+      <div
+        v-if="selected_item.concentration"
+        class="ma-3"
+        style="font-weight: bold;"
+      >
+        Concentration nécessaire.
       </div>
       <div v-html="selected_item.description"></div>
     </div>
@@ -21,15 +31,13 @@ export default {
   }),
   computed: {
     selected_item() {
-      return this.$store.getters.get_selected_item(this.slug);
-    },
-    query() {
-      return this.$store.state.search_query;
+      console.log(this.spell);
+      return this.$store.getters.get_selected_spell(this.spell);
     }
   },
   async asyncData({ params }) {
-    const slug = params.slug; // When calling /abc the slug will be "abc"
-    return { slug };
+    const spell = params.spell; // When calling /abc the slug will be "abc"
+    return { spell };
   }
 };
 </script>
