@@ -6,7 +6,7 @@
         École : {{ selected_item.ecole }}, sort de niveau {{ selected_item.level }}.
       </div>
       <div class="ma-3" style="font-weight: bold;">
-        {{ selected_item.incantation }}
+        {{ selected_item.incantation }}.
       </div>
       <div v-if="selected_item.rituel" class="mb-6" style="font-weight: bold;">
         Nécessite un rituel.

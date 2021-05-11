@@ -3,7 +3,7 @@
     <NuxtLink v-bind:to="'/spell/' + objet.nom">
       <v-container>
         <v-row>
-          <v-col cols="auto">
+          <v-col cols="auto" class="pa-1">
             <div v-if="$vuetify.breakpoint.mobile">
               {{ objet.nom }} (niv .{{ objet.level }})
             </div>
