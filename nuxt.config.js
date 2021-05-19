@@ -1,3 +1,7 @@
+import data_magical_items from "./static/data/magical_objects.json";
+
+import data_spell from "./static/data/spells.json";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -72,6 +76,15 @@ export default {
   target: "static",
 
   generate: {
-    routes: ["/item/Amulette%20antidote"]
+    routes: function() {
+      let arr = [];
+      for (const item of data_magical_items) {
+        arr.push("/item/" + encodeURI(item.nom));
+      }
+      for (const spell of data_spell) {
+        arr.push("/spell/" + encodeURI(spell.nom));
+      }
+      return arr;
+    }
   }
 };
