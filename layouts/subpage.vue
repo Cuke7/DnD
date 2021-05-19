@@ -8,6 +8,14 @@
       </v-btn>
 
       <v-toolbar-title class="white--text">D&D assistant</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon @click="share" color="white">
+        <v-icon>
+          mdi-share-variant
+        </v-icon>
+      </v-btn>  
     </v-app-bar>
 
     <v-main>
@@ -29,6 +37,20 @@ export default {
   watch: {
     dark_mode_activated(val) {
       this.$vuetify.theme.dark = !val;
+    }
+  },
+  methods: {
+    share() {
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "DnD app",
+            text: "",
+            url: window.location.href
+          })
+          .then(() => console.log("Successful share"))
+          .catch(error => console.log("Error sharing", error));
+      }
     }
   }
 };
