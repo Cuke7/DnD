@@ -3,7 +3,8 @@
     <div class="bloc pa-2">
       <h1 class="my-6">{{ selected_item.nom }}</h1>
       <div class="ma-3" style="font-weight: bold;">
-        École : {{ selected_item.ecole }}, sort de niveau {{ selected_item.level }}.
+        École : {{ selected_item.ecole }}, sort de niveau
+        {{ selected_item.level }}.
       </div>
       <div class="ma-3" style="font-weight: bold;">
         {{ selected_item.incantation }}.
@@ -31,7 +32,7 @@ export default {
   }),
   computed: {
     selected_item() {
-      console.log(this.spell);
+      this.$store.commit("changeSubtitle", this.spell);
       return this.$store.getters.get_selected_spell(this.spell);
     }
   },

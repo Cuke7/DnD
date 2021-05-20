@@ -21,8 +21,9 @@ export default {
   }),
   computed: {
     selected_item() {
+      this.$store.commit("changeSubtitle", this.slug);
       return this.$store.getters.get_selected_item(this.slug);
-    },
+    }
   },
   async asyncData({ params }) {
     const slug = params.slug; // When calling /abc the slug will be "abc"

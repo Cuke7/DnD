@@ -15,7 +15,7 @@
         <v-icon>
           mdi-share-variant
         </v-icon>
-      </v-btn>  
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -39,16 +39,21 @@ export default {
       this.$vuetify.theme.dark = !val;
     }
   },
+  computed: {
+    subtitle() {
+      return this.$store.state.subtitle;
+    }
+  },
   methods: {
     share() {
       if (navigator.share) {
         navigator
           .share({
             title: "DnD app",
-            text: "",
+            text: this.subtitle,
             url: window.location.href
           })
-          .then(() => console.log("Successful share"))
+          .then(() => console.log(this.subtitle))
           .catch(error => console.log("Error sharing", error));
       }
     }
