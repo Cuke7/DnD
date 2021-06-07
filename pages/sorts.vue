@@ -96,15 +96,16 @@
       </v-card-subtitle>
     </v-card>
 
-    <Spell
+    <!-- <Spell
       :objet="result"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
       class="pa-2"
-    ></Spell>
+    ></Spell> -->
 
-    <!-- <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index">{{ result.name }}
-    </v-list-item> -->
+    <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index"
+      >{{ result.name }}
+    </v-list-item>
 
     <v-btn
       fab
@@ -143,10 +144,9 @@ export default {
     filtered_results() {
       //console.log("In filter results");
       let checker = (arr, target) => target.every(v => arr.includes(v));
-      return Object.freeze(
-        this.$store.state.data_spells.filter(spell =>
-          checker(spell.code, this.filters)
-        )
+      return;
+      this.$store.state.data_spells.filter(spell =>
+        checker(spell.code, this.filters)
       );
     },
     // Aplly fuzzy search
