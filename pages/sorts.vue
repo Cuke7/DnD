@@ -96,16 +96,16 @@
       </v-card-subtitle>
     </v-card>
 
-    <!-- <Spell
+    <Spell
       :objet="result"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
       class="pa-2"
-    ></Spell> -->
+    ></Spell>
 
-    <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index">
+    <!-- <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index">
       {{ result.nom }}
-    </v-list-item>
+    </v-list-item> -->
 
     <v-btn
       fab
@@ -126,6 +126,7 @@
 <script>
 import Spell from "~/components/Spell.vue";
 const fuzzysort = require("fuzzysort");
+const { fuzzy, Searcher } = require("fast-fuzzy");
 
 export default {
   components: {
@@ -140,6 +141,12 @@ export default {
     fab: false
   }),
   computed: {
+    mySearcher() {
+      console.log("In searcher");
+      return new Searcher(this.filtered_results, {
+        keySelector: obj => obj.nom
+      });
+    },
     // Apply filters
     filtered_results() {
       //console.log("In filter results");
@@ -151,12 +158,22 @@ export default {
     // Aplly fuzzy search
     sorted_results() {
       //console.log("In sorted results");
+      // if (this.search) {
+      //   return fuzzysort
+      //     .go(this.search, this.filtered_results, {
+      //       key: "nom"
+      //     })
+      //     .map(a => a.obj);
+      // } else {
+      //   return this.filtered_results;
+      // }
+
       if (this.search) {
-        return fuzzysort
-          .go(this.search, this.filtered_results, {
-            key: "nom"
+        return this.mySearcher
+          .search(this.search, {
+            returnMatchData: true
           })
-          .map(a => a.obj);
+          .map(a => a.item);
       } else {
         return this.filtered_results;
       }
