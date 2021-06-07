@@ -96,16 +96,16 @@
       </v-card-subtitle>
     </v-card>
 
-    <Spell
+    <!-- <Spell
       :objet="result"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
       class="pa-2"
-    ></Spell>
+    ></Spell> -->
 
-    <!-- <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index">
-      {{ result.nom }}
-    </v-list-item> -->
+    <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index">
+      <NuxtLink v-bind:to="'/spell/' + result.nom">{{ result.nom }}</NuxtLink>
+    </v-list-item>
 
     <v-btn
       fab
