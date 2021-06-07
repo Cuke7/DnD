@@ -76,15 +76,15 @@ export default {
   target: "static",
 
   generate: {
-  //   routes: function() {
-  //     let arr = [];
-  //     for (const item of data_magical_items) {
-  //       arr.push("/item/" + encodeURI(item.nom));
-  //     }
-  //     for (const spell of data_spell) {
-  //       arr.push("/spell/" + encodeURI(spell.nom));
-  //     }
-  //     return arr;
-  //   }
+    routes: function() {
+      let arr = [];
+      for (const item of data_magical_items) {
+        arr.push("/item/" + encodeURI(item.nom));
+      }
+      for (const spell of data_spell) {
+        arr.push("/spell/" + encodeURI(spell.nom));
+      }
+      return arr;
+    }
   }
 };
