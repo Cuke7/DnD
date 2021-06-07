@@ -103,6 +103,9 @@
       class="pa-2"
     ></Spell>
 
+    <!-- <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index">{{ result.name }}
+    </v-list-item> -->
+
     <v-btn
       fab
       v-scroll="onScroll"
@@ -140,8 +143,10 @@ export default {
     filtered_results() {
       //console.log("In filter results");
       let checker = (arr, target) => target.every(v => arr.includes(v));
-      return this.$store.state.data_spells.filter(spell =>
-        checker(spell.code, this.filters)
+      return Object.freeze(
+        this.$store.state.data_spells.filter(spell =>
+          checker(spell.code, this.filters)
+        )
       );
     },
     // Aplly fuzzy search

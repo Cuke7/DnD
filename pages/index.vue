@@ -103,6 +103,7 @@ export default {
         color: "red"
       }
     ]
-  })
+  }),
+  methods: {}
 };
 </script>
