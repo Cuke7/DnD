@@ -9,6 +9,7 @@
             v-model="search"
             color="primary"
             autocomplete="off"
+            @keydown.enter="searchSpell"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -96,16 +97,16 @@
       </v-card-subtitle>
     </v-card>
 
-    <!-- <Spell
-      :objet="result"
+    <Spell
       v-for="(result, index) in sorted_results"
+      :objet="result.item"
       v-bind:key="index"
       class="pa-2"
-    ></Spell> -->
+    ></Spell>
 
-    <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index">
+    <!-- <v-list-item v-for="(result, index) in sorted_results" v-bind:key="index">
       <NuxtLink v-bind:to="'/spell/' + result.nom">{{ result.nom }}</NuxtLink>
-    </v-list-item>
+    </v-list-item> -->
 
     <v-btn
       fab
@@ -138,7 +139,8 @@ export default {
     level: null,
     ecole: null,
     classe: null,
-    fab: false
+    fab: false,
+    sorted_results: []
   }),
   computed: {
     mySearcher() {
@@ -156,29 +158,20 @@ export default {
       );
     },
     // Aplly fuzzy search
-    sorted_results() {
-      //console.log("In sorted results");
-      // if (this.search) {
-      //   return fuzzysort
-      //     .go(this.search, this.filtered_results, {
-      //       key: "nom"
-      //     })
-      //     .map(a => a.obj);
-      // } else {
-      //   return this.filtered_results;
-      // }
-
-      if (this.search) {
-        return this.mySearcher
-          .search(this.search, {
-            returnMatchData: true
-          })
-          .map(a => a.item);
-      } else {
-        return this.filtered_results;
-      }
-    },
+    // sorted_results() {
+    //console.log("In sorted results");
+    // if (this.search) {
+    //   return fuzzysort
+    //     .go(this.search, this.filtered_results, {
+    //       key: "nom"
+    //     })
+    //     .map(a => a.obj);
+    // } else {
+    //   return this.filtered_results;
+    // }
+    // },
     filters() {
+      console.log("filters");
       return [this.classe, this.ecole, this.level].filter(function(el) {
         return el;
       });
@@ -196,6 +189,19 @@ export default {
     }
   },
   methods: {
+    searchSpell() {
+      if (this.search) {
+        this.show = false;
+        this.sorted_results = this.mySearcher.search(this.search, {
+          returnMatchData: true
+        });
+      } else {
+        this.show = false;
+        this.sorted_results = this.filtered_results.map(a => {
+          return { item: a };
+        });
+      }
+    },
     onScroll(e) {
       if (typeof window === "undefined") return;
       const top = window.pageYOffset || e.target.scrollTop || 0;
@@ -212,6 +218,7 @@ export default {
       this.search = this.$store.state.search_query;
       this.rarete = this.$store.state.rarete;
       this.type = this.$store.state.type;
+      this.searchSpell()
     });
   }
 };

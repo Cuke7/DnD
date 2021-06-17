@@ -9,6 +9,8 @@
             v-model="search"
             color="primary"
             autocomplete="off"
+            @keydown.enter="searchItem"
+            hide-details
           ></v-text-field>
         </v-col>
       </v-row>
@@ -93,7 +95,7 @@
     </v-card>
 
     <ObjetMagique
-      :objet="result"
+      :objet="result.item"
       v-for="(result, index) in sorted_results"
       v-bind:key="index"
       class="pa-2"
@@ -118,6 +120,7 @@
 <script>
 import ObjetMagique from "~/components/ObjetMagique.vue";
 const fuzzysort = require("fuzzysort");
+const { fuzzy, Searcher } = require("fast-fuzzy");
 
 export default {
   components: {
@@ -129,9 +132,15 @@ export default {
     rarete: null,
     type: "",
     fab: false,
-    LevImplementation: true
+    sorted_results: []
   }),
   computed: {
+    mySearcher() {
+      console.log("In searcher");
+      return new Searcher(this.filtered_results, {
+        keySelector: obj => obj.nom
+      });
+    },
     // Applay filters
     filtered_results() {
       //console.log("In filter results");
@@ -141,18 +150,18 @@ export default {
       );
     },
     // Aplly fuzzy search
-    sorted_results() {
-      //console.log("In sorted results");
-      if (this.search) {
-        return fuzzysort
-          .go(this.search, this.filtered_results, {
-            key: "nom"
-          })
-          .map(a => a.obj);
-      } else {
-        return this.filtered_results;
-      }
-    },
+    // sorted_results() {
+    //   //console.log("In sorted results");
+    //   if (this.search) {
+    //     return fuzzysort
+    //       .go(this.search, this.filtered_results, {
+    //         key: "nom"
+    //       })
+    //       .map(a => a.obj);
+    //   } else {
+    //     return this.filtered_results;
+    //   }
+    // },
     filters() {
       return [this.rarete, this.type].filter(function(el) {
         return el;
@@ -171,6 +180,19 @@ export default {
     }
   },
   methods: {
+    searchItem() {
+      if (this.search) {
+        this.show = false;
+        this.sorted_results = this.mySearcher.search(this.search, {
+          returnMatchData: true
+        });
+      } else {
+        this.show = false;
+        this.sorted_results = this.filtered_results.map(a => {
+          return { item: a };
+        });
+      }
+    },
     onScroll(e) {
       if (typeof window === "undefined") return;
       const top = window.pageYOffset || e.target.scrollTop || 0;
@@ -187,6 +209,7 @@ export default {
       this.search = this.$store.state.search_query;
       this.rarete = this.$store.state.rarete;
       this.type = this.$store.state.type;
+      this.searchItem();
     });
   }
 };
