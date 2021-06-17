@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1 class="text-center my-4">La croisée des chemins</h1>
-    <h2 class="my-12">Quelques lien utiles...</h2>
+    <!-- <v-card-title class="pl-0 pt-0">Quelques liens utiles...</v-card-title> -->
     <v-row>
       <v-col cols="12" lg="6" v-for="(link, index) in links" v-bind:key="index">
         <v-card v-if="link.color" color="rgb(55, 0, 0, 0.2)" class="pa-4">
