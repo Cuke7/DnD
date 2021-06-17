@@ -2,13 +2,13 @@
   <v-container>
     <div class="bloc pa-2">
       <h1 class="my-6">{{ selected_item.nom }}</h1>
-      <div class="ma-3" style="font-weight: bold;">
+      <div class="my-3" style="font-weight: bold;">
         École : {{ selected_item.ecole }}.
       </div>
-      <div class="ma-3" style="font-weight: bold;">
+      <div class="my-3" style="font-weight: bold;">
         Sort de niveau {{ selected_item.level }}.
       </div>
-      <div class="ma-3" style="font-weight: bold;">
+      <div class="my-3" style="font-weight: bold;">
         {{ selected_item.incantation }}.
       </div>
       <div v-if="selected_item.rituel" class="mb-6" style="font-weight: bold;">
@@ -16,7 +16,7 @@
       </div>
       <div
         v-if="selected_item.concentration"
-        class="ma-3"
+        class="my-3"
         style="font-weight: bold;"
       >
         Concentration nécessaire.
