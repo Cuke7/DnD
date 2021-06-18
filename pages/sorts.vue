@@ -10,6 +10,8 @@
             color="primary"
             autocomplete="off"
             @keydown.enter="searchSpell"
+            append-icon="mdi-magnify"
+            @click:append="searchSpell"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -218,7 +220,7 @@ export default {
       this.search = this.$store.state.search_query;
       this.rarete = this.$store.state.rarete;
       this.type = this.$store.state.type;
-      this.searchSpell()
+      this.searchSpell();
     });
   }
 };

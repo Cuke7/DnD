@@ -11,6 +11,8 @@
             autocomplete="off"
             @keydown.enter="searchItem"
             hide-details
+            append-icon="mdi-magnify"
+            @click:append="searchItem"
           ></v-text-field>
         </v-col>
       </v-row>
