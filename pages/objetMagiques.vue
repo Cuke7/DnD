@@ -13,6 +13,7 @@
             hide-details
             append-icon="mdi-magnify"
             @click:append="searchItem"
+            ref="searchElement"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -183,6 +184,7 @@ export default {
   },
   methods: {
     searchItem() {
+      this.$refs.searchElement.blur();
       if (this.search) {
         this.show = false;
         this.sorted_results = this.mySearcher.search(this.search, {

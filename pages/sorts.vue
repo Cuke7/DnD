@@ -12,6 +12,7 @@
             @keydown.enter="searchSpell"
             append-icon="mdi-magnify"
             @click:append="searchSpell"
+            ref="searchElement"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -192,6 +193,7 @@ export default {
   },
   methods: {
     searchSpell() {
+      this.$refs.searchElement.blur();
       if (this.search) {
         this.show = false;
         this.sorted_results = this.mySearcher.search(this.search, {
